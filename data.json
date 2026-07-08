@@ -9,31 +9,31 @@
           "id": "vehicle-spares-001",
           "name": "암 여분",
           "checked": false,
-          "updatedAt": "2026-07-07T17:23:09.987Z"
+          "updatedAt": null
         },
         {
           "id": "vehicle-spares-002",
-          "name": "얼라이먼트 여분",
+          "name": "얼라이먼트, 텐셔너 여분",
           "checked": false,
-          "updatedAt": "2026-07-07T17:23:09.493Z"
+          "updatedAt": null
         },
         {
           "id": "vehicle-spares-003",
           "name": "엑셀 케이블 여분",
           "checked": false,
-          "updatedAt": "2026-07-07T17:19:39.437Z"
+          "updatedAt": null
         },
         {
           "id": "vehicle-spares-004",
           "name": "브라켓",
           "checked": false,
-          "updatedAt": "2026-07-07T17:14:29.492Z"
+          "updatedAt": null
         },
         {
           "id": "vehicle-spares-005",
-          "name": "고무호스",
+          "name": "고무 호스",
           "checked": false,
-          "updatedAt": "2026-07-07T17:14:29.752Z"
+          "updatedAt": null
         },
         {
           "id": "vehicle-spares-006",
@@ -42,22 +42,10 @@
           "updatedAt": null
         },
         {
-          "id": "vehicle-spares-007",
-          "name": "ECU 여분",
-          "checked": false,
-          "updatedAt": null
-        },
-        {
-          "id": "vehicle-spares-008",
-          "name": "배터리 여분",
-          "checked": false,
-          "updatedAt": null
-        },
-        {
           "id": "vehicle-spares-009",
           "name": "체인 여분",
           "checked": false,
-          "updatedAt": null
+          "updatedAt": "2026-07-08T19:17:02.052Z"
         },
         {
           "id": "vehicle-spares-010",
@@ -73,15 +61,15 @@
       "items": [
         {
           "id": "oil-chemicals-001",
-          "name": "엔진오일",
+          "name": "엔진 오일",
           "checked": false,
-          "updatedAt": "2026-07-07T17:06:54.186Z"
+          "updatedAt": null
         },
         {
           "id": "oil-chemicals-002",
-          "name": "브레이크오일",
+          "name": "브레이크 오일",
           "checked": false,
-          "updatedAt": "2026-07-07T17:06:53.914Z"
+          "updatedAt": null
         },
         {
           "id": "oil-chemicals-003",
@@ -103,7 +91,7 @@
         },
         {
           "id": "oil-chemicals-006",
-          "name": "WD",
+          "name": "WD or HD",
           "checked": false,
           "updatedAt": null
         }
@@ -117,19 +105,31 @@
           "id": "fastener-bin-001",
           "name": "볼트 / 너트 / 와셔",
           "checked": false,
-          "updatedAt": "2026-07-07T17:23:12.778Z"
+          "updatedAt": null
         },
         {
           "id": "fastener-bin-002",
-          "name": "휠너트",
+          "name": "휠 너트",
           "checked": false,
-          "updatedAt": "2026-07-07T17:23:14.110Z"
+          "updatedAt": null
         },
         {
           "id": "fastener-bin-003",
-          "name": "케이블타이 - 두꺼운 것 / 얇은 것",
+          "name": "케이블타이 - 두꺼운 것 / 얇은 것 / 금속",
           "checked": false,
-          "updatedAt": "2026-07-07T17:23:13.784Z"
+          "updatedAt": null
+        },
+        {
+          "id": "item-dc3f5046",
+          "name": "크라운너트 짜개핀",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "item-fb97a1fa",
+          "name": "리벳",
+          "checked": false,
+          "updatedAt": null
         }
       ]
     },
@@ -208,6 +208,18 @@
           "name": "검은 테이프",
           "checked": false,
           "updatedAt": null
+        },
+        {
+          "id": "vehicle-spares-007",
+          "name": "ECU 여분",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "vehicle-spares-008",
+          "name": "차량 배터리 여분",
+          "checked": false,
+          "updatedAt": null
         }
       ]
     },
@@ -222,14 +234,14 @@
           "updatedAt": null
         },
         {
-          "id": "electric-toolbox-002",
-          "name": "라이트 / 라이트 충전기",
+          "id": "electric-toolbox-003",
+          "name": "드릴",
           "checked": false,
           "updatedAt": null
         },
         {
-          "id": "electric-toolbox-003",
-          "name": "드릴",
+          "id": "item-8c7c1889",
+          "name": "임팩",
           "checked": false,
           "updatedAt": null
         },
@@ -241,19 +253,13 @@
         },
         {
           "id": "electric-toolbox-005",
-          "name": "글라인더 날",
+          "name": "글라인더 날(연삭, 절삭, 와이어 브러쉬)",
           "checked": false,
           "updatedAt": null
-        }
-      ]
-    },
-    {
-      "id": "welding-equipment",
-      "name": "용접 장비",
-      "items": [
+        },
         {
-          "id": "welding-equipment-001",
-          "name": "용접기",
+          "id": "item-aae784fe",
+          "name": "공구 베터리",
           "checked": false,
           "updatedAt": null
         }
@@ -261,11 +267,11 @@
     },
     {
       "id": "hand-toolbox",
-      "name": "일반 공구함",
+      "name": "수공구및 측정공구",
       "items": [
         {
           "id": "hand-toolbox-001",
-          "name": "쇠망치 / 해머",
+          "name": "장도리 / 미니 오함마",
           "checked": false,
           "updatedAt": null
         },
@@ -294,50 +300,32 @@
           "updatedAt": null
         },
         {
-          "id": "hand-toolbox-006",
-          "name": "쇼바 렌치",
-          "checked": false,
-          "updatedAt": null
-        },
-        {
-          "id": "hand-toolbox-007",
-          "name": "렌치",
-          "checked": false,
-          "updatedAt": null
-        },
-        {
-          "id": "hand-toolbox-008",
-          "name": "렌치 그거",
-          "checked": false,
-          "updatedAt": null
-        },
-        {
-          "id": "hand-toolbox-009",
-          "name": "체인 빼는 공구",
-          "checked": false,
-          "updatedAt": null
-        },
-        {
-          "id": "hand-toolbox-010",
-          "name": "스패너 세트",
-          "checked": false,
-          "updatedAt": null
-        },
-        {
-          "id": "hand-toolbox-011",
-          "name": "소켓 세트",
-          "checked": false,
-          "updatedAt": null
-        },
-        {
           "id": "hand-toolbox-012",
           "name": "버니어",
           "checked": false,
           "updatedAt": null
         },
         {
-          "id": "hand-toolbox-013",
-          "name": "깔딱이 큰 것 / 작은 것",
+          "id": "hand-toolbox-006",
+          "name": "쇼바 렌치",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-008",
+          "name": "L 렌치 세트",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "item-3428aed3",
+          "name": "T렌치",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-009",
+          "name": "체인 빼는 공구",
           "checked": false,
           "updatedAt": null
         },
@@ -366,14 +354,56 @@
           "updatedAt": null
         },
         {
-          "id": "hand-toolbox-018",
-          "name": "용접 브러시",
+          "id": "item-7d110f5f",
+          "name": "리벳 건",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    },
+    {
+      "id": "category-1c10ab66",
+      "name": "소켓및 스패너",
+      "items": [
+        {
+          "id": "hand-toolbox-011",
+          "name": "소켓 세트",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-010",
+          "name": "스패너 세트",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-013",
+          "name": "라쳇 큰거/작은 거",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    },
+    {
+      "id": "welding-equipment",
+      "name": "용접 장비",
+      "items": [
+        {
+          "id": "welding-equipment-001",
+          "name": "용접기",
           "checked": false,
           "updatedAt": null
         },
         {
           "id": "hand-toolbox-019",
           "name": "용접 망치 / 용접봉",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-018",
+          "name": "용접 브러시",
           "checked": false,
           "updatedAt": null
         }
@@ -383,12 +413,6 @@
       "id": "field-equipment",
       "name": "기타 · 현장 장비",
       "items": [
-        {
-          "id": "field-equipment-002",
-          "name": "멀티탭",
-          "checked": false,
-          "updatedAt": null
-        },
         {
           "id": "field-equipment-003",
           "name": "릴선",
@@ -408,20 +432,20 @@
           "updatedAt": null
         },
         {
-          "id": "field-equipment-006",
-          "name": "써큘",
-          "checked": false,
-          "updatedAt": null
-        },
-        {
           "id": "field-equipment-007",
-          "name": "고인목",
+          "name": "고임목",
           "checked": false,
           "updatedAt": null
         },
         {
           "id": "field-equipment-008",
-          "name": "안전자키 4개",
+          "name": "자키 2개",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "item-2bca0d10",
+          "name": "안전자키 2개",
           "checked": false,
           "updatedAt": null
         },
@@ -471,7 +495,7 @@
     },
     {
       "id": "safety-gear",
-      "name": "개인 안전장비",
+      "name": "드라이버 안전장비",
       "items": [
         {
           "id": "safety-gear-001",

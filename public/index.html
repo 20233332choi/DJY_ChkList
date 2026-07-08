@@ -28,10 +28,14 @@
           <span>검색</span>
           <input id="search-input" type="search" placeholder="품목 검색">
         </label>
-        <button id="reset-button" type="button">전체 해제</button>
+        <div class="toolbar-actions">
+          <button id="manage-toggle" class="secondary-button" type="button" aria-pressed="false">품목 관리</button>
+          <button id="reset-button" type="button">전체 해제</button>
+        </div>
       </div>
 
       <section id="category-list" class="category-list" aria-live="polite"></section>
+      <section id="manage-panel" class="manage-panel" aria-live="polite" hidden></section>
     </main>
 
     <div id="status" class="status">연결 중</div>
