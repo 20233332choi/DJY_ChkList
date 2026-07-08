@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DJY 공유 체크리스트</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <img src="/logo.jpg" alt="Chosun University Automobile Research">
+        <div>
+          <p class="eyebrow">CHOSUN UNIVERSITY AUTOMOBILE RESEARCH</p>
+          <h1>DJY 장비 체크 보드</h1>
+        </div>
+      </div>
+      <div class="summary" aria-live="polite">
+        <span class="summary-label">CHECKED</span>
+        <strong id="checked-count">0</strong>
+        <span id="total-count">/ 0</span>
+      </div>
+    </header>
+
+    <main>
+      <div class="toolbar">
+        <label class="search">
+          <span>검색</span>
+          <input id="search-input" type="search" placeholder="품목 검색">
+        </label>
+        <button id="reset-button" type="button">전체 해제</button>
+      </div>
+
+      <section id="category-list" class="category-list" aria-live="polite"></section>
+    </main>
+
+    <div id="status" class="status">연결 중</div>
+    <script src="/app.js"></script>
+  </body>
+</html>

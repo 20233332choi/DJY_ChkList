@@ -1,0 +1,509 @@
+{
+  "title": "DJY 공유 체크리스트",
+  "categories": [
+    {
+      "id": "vehicle-spares",
+      "name": "차량 부품 · 예비품",
+      "items": [
+        {
+          "id": "vehicle-spares-001",
+          "name": "암 여분",
+          "checked": false,
+          "updatedAt": "2026-07-07T17:23:09.987Z"
+        },
+        {
+          "id": "vehicle-spares-002",
+          "name": "얼라이먼트 여분",
+          "checked": false,
+          "updatedAt": "2026-07-07T17:23:09.493Z"
+        },
+        {
+          "id": "vehicle-spares-003",
+          "name": "엑셀 케이블 여분",
+          "checked": false,
+          "updatedAt": "2026-07-07T17:19:39.437Z"
+        },
+        {
+          "id": "vehicle-spares-004",
+          "name": "브라켓",
+          "checked": false,
+          "updatedAt": "2026-07-07T17:14:29.492Z"
+        },
+        {
+          "id": "vehicle-spares-005",
+          "name": "고무호스",
+          "checked": false,
+          "updatedAt": "2026-07-07T17:14:29.752Z"
+        },
+        {
+          "id": "vehicle-spares-006",
+          "name": "스프링",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "vehicle-spares-007",
+          "name": "ECU 여분",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "vehicle-spares-008",
+          "name": "배터리 여분",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "vehicle-spares-009",
+          "name": "체인 여분",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "vehicle-spares-010",
+          "name": "파이프",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    },
+    {
+      "id": "oil-chemicals",
+      "name": "오일 · 케미컬",
+      "items": [
+        {
+          "id": "oil-chemicals-001",
+          "name": "엔진오일",
+          "checked": false,
+          "updatedAt": "2026-07-07T17:06:54.186Z"
+        },
+        {
+          "id": "oil-chemicals-002",
+          "name": "브레이크오일",
+          "checked": false,
+          "updatedAt": "2026-07-07T17:06:53.914Z"
+        },
+        {
+          "id": "oil-chemicals-003",
+          "name": "냉각수",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "oil-chemicals-004",
+          "name": "기름",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "oil-chemicals-005",
+          "name": "구리스",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "oil-chemicals-006",
+          "name": "WD",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    },
+    {
+      "id": "fastener-bin",
+      "name": "볼트 · 체결류 통",
+      "items": [
+        {
+          "id": "fastener-bin-001",
+          "name": "볼트 / 너트 / 와셔",
+          "checked": false,
+          "updatedAt": "2026-07-07T17:23:12.778Z"
+        },
+        {
+          "id": "fastener-bin-002",
+          "name": "휠너트",
+          "checked": false,
+          "updatedAt": "2026-07-07T17:23:14.110Z"
+        },
+        {
+          "id": "fastener-bin-003",
+          "name": "케이블타이 - 두꺼운 것 / 얇은 것",
+          "checked": false,
+          "updatedAt": "2026-07-07T17:23:13.784Z"
+        }
+      ]
+    },
+    {
+      "id": "consumable-bin",
+      "name": "소모품 통",
+      "items": [
+        {
+          "id": "consumable-bin-001",
+          "name": "키친타월",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "consumable-bin-002",
+          "name": "니트릴장갑",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "consumable-bin-003",
+          "name": "작업 장갑",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "consumable-bin-005",
+          "name": "청테이프",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "consumable-bin-006",
+          "name": "화이트마커 많이",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    },
+    {
+      "id": "wiring-tools",
+      "name": "배선 · 전기 작업",
+      "items": [
+        {
+          "id": "wiring-tools-001",
+          "name": "납",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "wiring-tools-002",
+          "name": "전선",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "wiring-tools-003",
+          "name": "인두기",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "wiring-tools-004",
+          "name": "스트리퍼",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "wiring-tools-005",
+          "name": "전압 테스터기",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "wiring-tools-006",
+          "name": "검은 테이프",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    },
+    {
+      "id": "electric-toolbox",
+      "name": "전자공구 공구함",
+      "items": [
+        {
+          "id": "electric-toolbox-001",
+          "name": "배터리 충전기",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "electric-toolbox-002",
+          "name": "라이트 / 라이트 충전기",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "electric-toolbox-003",
+          "name": "드릴",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "electric-toolbox-004",
+          "name": "글라인더",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "electric-toolbox-005",
+          "name": "글라인더 날",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    },
+    {
+      "id": "welding-equipment",
+      "name": "용접 장비",
+      "items": [
+        {
+          "id": "welding-equipment-001",
+          "name": "용접기",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    },
+    {
+      "id": "hand-toolbox",
+      "name": "일반 공구함",
+      "items": [
+        {
+          "id": "hand-toolbox-001",
+          "name": "쇠망치 / 해머",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-002",
+          "name": "고무망치",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-003",
+          "name": "줄자",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-004",
+          "name": "직각자",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-005",
+          "name": "수평기",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-006",
+          "name": "쇼바 렌치",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-007",
+          "name": "렌치",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-008",
+          "name": "렌치 그거",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-009",
+          "name": "체인 빼는 공구",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-010",
+          "name": "스패너 세트",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-011",
+          "name": "소켓 세트",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-012",
+          "name": "버니어",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-013",
+          "name": "깔딱이 큰 것 / 작은 것",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-014",
+          "name": "십자 / 일자 드라이버",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-015",
+          "name": "니퍼",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-016",
+          "name": "커터칼",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-017",
+          "name": "바이스",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-018",
+          "name": "용접 브러시",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "hand-toolbox-019",
+          "name": "용접 망치 / 용접봉",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    },
+    {
+      "id": "field-equipment",
+      "name": "기타 · 현장 장비",
+      "items": [
+        {
+          "id": "field-equipment-002",
+          "name": "멀티탭",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-003",
+          "name": "릴선",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-004",
+          "name": "천막",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-005",
+          "name": "모기향",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-006",
+          "name": "써큘",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-007",
+          "name": "고인목",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-008",
+          "name": "안전자키 4개",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-009",
+          "name": "꼬깔",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-010",
+          "name": "물",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-011",
+          "name": "음료수",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-012",
+          "name": "아이스박스",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-013",
+          "name": "얼음",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-014",
+          "name": "의자",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "field-equipment-015",
+          "name": "구급상자",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    },
+    {
+      "id": "safety-gear",
+      "name": "개인 안전장비",
+      "items": [
+        {
+          "id": "safety-gear-001",
+          "name": "헬멧",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "safety-gear-002",
+          "name": "안전 장갑",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "safety-gear-003",
+          "name": "고글",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "safety-gear-004",
+          "name": "팔 안전벨트",
+          "checked": false,
+          "updatedAt": null
+        },
+        {
+          "id": "safety-gear-005",
+          "name": "드라이버 신발",
+          "checked": false,
+          "updatedAt": null
+        }
+      ]
+    }
+  ]
+}
