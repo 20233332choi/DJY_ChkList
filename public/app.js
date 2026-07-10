@@ -1,15 +1,24 @@
 const categoryList = document.querySelector("#category-list");
 const managePanel = document.querySelector("#manage-panel");
+const logPanel = document.querySelector("#log-panel");
 const checkedCount = document.querySelector("#checked-count");
 const totalCount = document.querySelector("#total-count");
 const searchInput = document.querySelector("#search-input");
 const resetButton = document.querySelector("#reset-button");
 const manageToggle = document.querySelector("#manage-toggle");
+const logToggle = document.querySelector("#log-toggle");
 const statusBadge = document.querySelector("#status");
+const actorGate = document.querySelector("#actor-gate");
+const actorForm = document.querySelector("#actor-form");
+const actorInput = document.querySelector("#actor-input");
+const actorName = document.querySelector("#actor-name");
+
+const ACTOR_STORAGE_KEY = "djy-checklist-actor";
 
 let currentState = null;
 let searchTerm = "";
-let isManaging = false;
+let currentView = "board";
+let currentActor = localStorage.getItem(ACTOR_STORAGE_KEY) || "";
 
 function setStatus(text, className) {
   statusBadge.textContent = text;
@@ -24,12 +33,43 @@ function totals(categories) {
   };
 }
 
+function setActor(name) {
+  currentActor = String(name || "").trim();
+  if (currentActor) {
+    localStorage.setItem(ACTOR_STORAGE_KEY, currentActor);
+    actorGate.hidden = true;
+    actorName.textContent = currentActor;
+  } else {
+    localStorage.removeItem(ACTOR_STORAGE_KEY);
+    actorGate.hidden = false;
+    actorInput.focus();
+  }
+}
+
+function setView(view) {
+  currentView = view;
+  const isManaging = view === "manage";
+  const isLog = view === "log";
+
+  manageToggle.setAttribute("aria-pressed", String(isManaging));
+  logToggle.setAttribute("aria-pressed", String(isLog));
+  manageToggle.textContent = isManaging ? "체크 보드" : "품목 관리";
+  logToggle.textContent = isLog ? "체크 보드" : "로그 보기";
+
+  categoryList.hidden = isManaging || isLog;
+  managePanel.hidden = !isManaging;
+  logPanel.hidden = !isLog;
+
+  if (currentState) render(currentState);
+}
+
 function render(state) {
   currentState = state;
   const total = totals(state.categories);
   checkedCount.textContent = total.checked;
   totalCount.textContent = `/ ${total.total}`;
   renderManager(state);
+  renderLog(state);
 
   const query = searchTerm.trim().toLowerCase();
   const visibleCategories = state.categories
@@ -47,14 +87,20 @@ function render(state) {
   categoryList.innerHTML = visibleCategories.map(category => {
     const categoryTotal = category.items.length;
     const categoryChecked = category.items.filter(item => item.checked).length;
-    const items = category.items.map(item => `
+    const items = category.items.map(item => {
+      const visibleActor = item.checked ? item.checkedBy : item.addedBy;
+      return `
       <li class="item ${item.checked ? "checked" : ""}">
         <label>
           <input type="checkbox" data-id="${item.id}" ${item.checked ? "checked" : ""}>
-          <span>${escapeHtml(item.name)}</span>
+          <span class="item-main">
+            <span class="item-name">${escapeHtml(item.name)}</span>
+            ${visibleActor ? `<span class="item-actor">${escapeHtml(visibleActor)}</span>` : ""}
+          </span>
         </label>
       </li>
-    `).join("");
+    `;
+    }).join("");
 
     return `
       <article class="category" data-category="${escapeHtml(category.id)}">
@@ -78,6 +124,16 @@ function escapeHtml(value) {
   }[char]));
 }
 
+function formatDate(value) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "-";
+  return new Intl.DateTimeFormat("ko-KR", {
+    dateStyle: "short",
+    timeStyle: "short"
+  }).format(date);
+}
+
 function categoryOptions(selectedId) {
   return currentState.categories.map(category => `
     <option value="${escapeHtml(category.id)}" ${category.id === selectedId ? "selected" : ""}>
@@ -87,7 +143,7 @@ function categoryOptions(selectedId) {
 }
 
 function renderManager(state) {
-  if (!isManaging) return;
+  if (currentView !== "manage") return;
 
   managePanel.innerHTML = `
     <form class="add-category-form" data-action="add-category">
@@ -100,8 +156,8 @@ function renderManager(state) {
           <form class="manage-category-head" data-action="rename-category">
             <input name="name" type="text" value="${escapeHtml(category.name)}" required>
             <div class="order-actions" aria-label="카테고리 순서">
-              <button class="icon-button secondary-button" type="button" data-action="move-category" data-direction="up" ${categoryIndex === 0 ? "disabled" : ""}>↑</button>
-              <button class="icon-button secondary-button" type="button" data-action="move-category" data-direction="down" ${categoryIndex === state.categories.length - 1 ? "disabled" : ""}>↓</button>
+              <button class="icon-button secondary-button" type="button" data-action="move-category" data-direction="up" ${categoryIndex === 0 ? "disabled" : ""}>▲</button>
+              <button class="icon-button secondary-button" type="button" data-action="move-category" data-direction="down" ${categoryIndex === state.categories.length - 1 ? "disabled" : ""}>▼</button>
             </div>
             <button class="secondary-button" type="submit">수정</button>
             <button class="danger-button" type="button" data-action="delete-category" ${category.items.length ? "disabled" : ""}>삭제</button>
@@ -116,8 +172,8 @@ function renderManager(state) {
                 <input name="name" type="text" value="${escapeHtml(item.name)}" required>
                 <select name="categoryId" aria-label="카테고리">${categoryOptions(category.id)}</select>
                 <div class="order-actions" aria-label="품목 순서">
-                  <button class="icon-button secondary-button" type="button" data-action="move-item" data-direction="up" ${itemIndex === 0 ? "disabled" : ""}>↑</button>
-                  <button class="icon-button secondary-button" type="button" data-action="move-item" data-direction="down" ${itemIndex === category.items.length - 1 ? "disabled" : ""}>↓</button>
+                  <button class="icon-button secondary-button" type="button" data-action="move-item" data-direction="up" ${itemIndex === 0 ? "disabled" : ""}>▲</button>
+                  <button class="icon-button secondary-button" type="button" data-action="move-item" data-direction="down" ${itemIndex === category.items.length - 1 ? "disabled" : ""}>▼</button>
                 </div>
                 <button class="secondary-button" type="button" data-action="save-item">저장</button>
                 <button class="danger-button" type="button" data-action="delete-item">삭제</button>
@@ -128,6 +184,42 @@ function renderManager(state) {
       `).join("")}
     </div>
   `;
+}
+
+function renderLog(state) {
+  if (currentView !== "log") return;
+  const logs = (state.activityLog || []).slice().reverse();
+
+  if (logs.length === 0) {
+    logPanel.innerHTML = '<div class="empty">아직 기록된 로그가 없습니다.</div>';
+    return;
+  }
+
+  logPanel.innerHTML = `
+    <div class="log-list">
+      ${logs.map(entry => `
+        <article class="log-entry">
+          <div>
+            <strong>${escapeHtml(entry.itemName || entry.categoryName || "-")}</strong>
+            <span>${escapeHtml(logActionLabel(entry.action))} · ${escapeHtml(entry.categoryName || "")}</span>
+          </div>
+          <div>
+            <span>${escapeHtml(entry.actor || "-")}</span>
+            <time datetime="${escapeHtml(entry.at || "")}">${formatDate(entry.at)}</time>
+          </div>
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
+function logActionLabel(action) {
+  return {
+    "add-item": "품목 추가",
+    "add-category": "카테고리 추가",
+    check: "체크",
+    uncheck: "체크 해제"
+  }[action] || "기록";
 }
 
 async function requestJson(path, options = {}) {
@@ -148,9 +240,15 @@ async function requestJson(path, options = {}) {
 async function updateItem(payload) {
   return requestJson("/api/items", {
     method: "PATCH",
-    body: payload
+    body: { ...payload, actor: currentActor }
   });
 }
+
+actorForm.addEventListener("submit", event => {
+  event.preventDefault();
+  const name = new FormData(actorForm).get("actor");
+  setActor(name);
+});
 
 categoryList.addEventListener("change", async event => {
   const checkbox = event.target.closest('input[type="checkbox"][data-id]');
@@ -179,12 +277,11 @@ resetButton.addEventListener("click", async () => {
 });
 
 manageToggle.addEventListener("click", () => {
-  isManaging = !isManaging;
-  manageToggle.setAttribute("aria-pressed", String(isManaging));
-  manageToggle.textContent = isManaging ? "체크 보드" : "품목 관리";
-  categoryList.hidden = isManaging;
-  managePanel.hidden = !isManaging;
-  if (currentState) render(currentState);
+  setView(currentView === "manage" ? "board" : "manage");
+});
+
+logToggle.addEventListener("click", () => {
+  setView(currentView === "log" ? "board" : "log");
 });
 
 managePanel.addEventListener("submit", async event => {
@@ -196,21 +293,24 @@ managePanel.addEventListener("submit", async event => {
 
   try {
     if (action === "add-category") {
-      await requestJson("/api/categories", { method: "POST", body: { name } });
+      await requestJson("/api/categories", {
+        method: "POST",
+        body: { name, actor: currentActor }
+      });
       form.reset();
       return;
     }
     if (action === "rename-category") {
       await requestJson("/api/categories", {
         method: "PATCH",
-        body: { id: categoryEl.dataset.categoryId, name }
+        body: { id: categoryEl.dataset.categoryId, name, actor: currentActor }
       });
       return;
     }
     if (action === "add-item") {
       await requestJson("/api/items", {
         method: "POST",
-        body: { categoryId: categoryEl.dataset.categoryId, name }
+        body: { categoryId: categoryEl.dataset.categoryId, name, actor: currentActor }
       });
       form.reset();
     }
@@ -232,14 +332,14 @@ managePanel.addEventListener("click", async event => {
       if (!confirm("빈 카테고리를 삭제할까요?")) return;
       await requestJson("/api/categories/delete", {
         method: "POST",
-        body: { id: categoryEl.dataset.categoryId }
+        body: { id: categoryEl.dataset.categoryId, actor: currentActor }
       });
       return;
     }
     if (action === "move-category") {
       await requestJson("/api/categories/move", {
         method: "POST",
-        body: { id: categoryEl.dataset.categoryId, direction: button.dataset.direction }
+        body: { id: categoryEl.dataset.categoryId, direction: button.dataset.direction, actor: currentActor }
       });
       return;
     }
@@ -254,7 +354,7 @@ managePanel.addEventListener("click", async event => {
     if (action === "move-item") {
       await requestJson("/api/items/move", {
         method: "POST",
-        body: { id: itemEl.dataset.itemId, direction: button.dataset.direction }
+        body: { id: itemEl.dataset.itemId, direction: button.dataset.direction, actor: currentActor }
       });
       return;
     }
@@ -262,7 +362,7 @@ managePanel.addEventListener("click", async event => {
       if (!confirm("이 품목을 삭제할까요?")) return;
       await requestJson("/api/items/delete", {
         method: "POST",
-        body: { id: itemEl.dataset.itemId }
+        body: { id: itemEl.dataset.itemId, actor: currentActor }
       });
     }
   } catch (error) {
@@ -271,6 +371,7 @@ managePanel.addEventListener("click", async event => {
 });
 
 async function loadInitialState() {
+  setActor(currentActor);
   const response = await fetch("/api/state");
   if (!response.ok) throw new Error("Failed to load state");
   render(await response.json());
