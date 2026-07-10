@@ -1,0 +1,140 @@
+.actor-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(16, 24, 40, 0.48);
+  backdrop-filter: blur(10px);
+}
+
+.actor-card {
+  display: grid;
+  gap: 12px;
+  width: min(360px, 100%);
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.actor-card h2 {
+  margin: 0 0 4px;
+  color: var(--navy);
+  font-size: 20px;
+}
+
+.actor-card input {
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #c9d5e6;
+  border-radius: 8px;
+  color: var(--ink);
+  font: inherit;
+}
+
+.actor-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actor-chip > span {
+  max-width: 120px;
+  overflow: hidden;
+  color: var(--navy);
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.item-name {
+  min-width: 0;
+}
+
+.item-actor {
+  padding: 3px 7px;
+  border: 1px solid #c6d3e6;
+  border-radius: 6px;
+  background: #f3f6ff;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.log-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.log-list {
+  display: grid;
+  gap: 8px;
+}
+
+.log-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.log-entry div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.log-entry div:last-child {
+  text-align: right;
+}
+
+.log-entry strong {
+  min-width: 0;
+  color: var(--navy);
+  overflow-wrap: anywhere;
+}
+
+.log-entry span,
+.log-entry time {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+@media (max-width: 560px) {
+  .actor-chip {
+    display: grid;
+    width: 100%;
+  }
+
+  .actor-chip > span {
+    max-width: none;
+  }
+
+  .item-main,
+  .log-entry {
+    grid-template-columns: 1fr;
+  }
+
+  .log-entry div:last-child {
+    text-align: left;
+  }
+}
