@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
+    <section id="actor-gate" class="actor-gate" aria-label="사용자 이름 입력">
+      <form id="actor-form" class="actor-card">
+        <h2>이름을 입력하세요</h2>
+        <input id="actor-input" name="actor" type="text" placeholder="예: 홍길동" autocomplete="name" required>
+        <button type="submit">시작</button>
+      </form>
+    </section>
+
     <header class="app-header">
       <div class="brand">
         <img src="/logo.jpg" alt="Chosun University Automobile Research">
@@ -28,14 +36,19 @@
           <span>검색</span>
           <input id="search-input" type="search" placeholder="품목 검색">
         </label>
+        <div class="actor-chip">
+          <span id="actor-name"></span>
+        </div>
         <div class="toolbar-actions">
           <button id="manage-toggle" class="secondary-button" type="button" aria-pressed="false">품목 관리</button>
+          <button id="log-toggle" class="secondary-button" type="button" aria-pressed="false">로그 보기</button>
           <button id="reset-button" type="button">전체 해제</button>
         </div>
       </div>
 
       <section id="category-list" class="category-list" aria-live="polite"></section>
       <section id="manage-panel" class="manage-panel" aria-live="polite" hidden></section>
+      <section id="log-panel" class="log-panel" aria-live="polite" hidden></section>
     </main>
 
     <div id="status" class="status">연결 중</div>
