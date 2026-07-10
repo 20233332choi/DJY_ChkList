@@ -22,13 +22,12 @@ const contentTypes = {
 
 async function loadState() {
   const raw = await fs.readFile(DATA_FILE, "utf8");
-  return JSON.parse(raw);
+  return normalizeState(JSON.parse(raw));
 }
 
 async function saveState(state) {
-  const tmpFile = `${DATA_FILE}.${process.pid}.${Date.now()}.tmp`;
-  await fs.writeFile(tmpFile, JSON.stringify(state, null, 2) + "\n", "utf8");
-  await fs.rename(tmpFile, DATA_FILE);
+  const nextJson = JSON.stringify(state, null, 2) + "\n";
+  await fs.writeFile(DATA_FILE, nextJson, "utf8");
 }
 
 async function withStateMutation(mutator) {
@@ -97,6 +96,28 @@ function cleanName(value) {
   return String(value || "").trim();
 }
 
+function cleanActor(value) {
+  return cleanName(value) || "알 수 없음";
+}
+
+function normalizeState(state) {
+  if (!Array.isArray(state.activityLog)) state.activityLog = [];
+  for (const category of state.categories || []) {
+    if (!Array.isArray(category.items)) category.items = [];
+  }
+  return state;
+}
+
+function addActivityLog(state, entry) {
+  state.activityLog.push({
+    id: makeId("log"),
+    ...entry
+  });
+  if (state.activityLog.length > 1000) {
+    state.activityLog.splice(0, state.activityLog.length - 1000);
+  }
+}
+
 function moveItem(entry, nextCategory) {
   entry.category.items.splice(entry.index, 1);
   nextCategory.items.push(entry.item);
@@ -135,9 +156,25 @@ async function handleApi(req, res, url) {
     const item = await withStateMutation(state => {
       const entry = findItemEntry(state, payload.id);
       if (!entry) throw Object.assign(new Error("Item not found"), { status: 404 });
+      const actor = cleanActor(payload.actor);
+      const now = new Date().toISOString();
 
       if (Object.prototype.hasOwnProperty.call(payload, "checked")) {
-        entry.item.checked = Boolean(payload.checked);
+        const checked = Boolean(payload.checked);
+        if (entry.item.checked !== checked) {
+          entry.item.checked = checked;
+          entry.item.checkedBy = checked ? actor : null;
+          entry.item.checkedAt = checked ? now : null;
+          addActivityLog(state, {
+            action: checked ? "check" : "uncheck",
+            actor,
+            at: now,
+            categoryId: entry.category.id,
+            categoryName: entry.category.name,
+            itemId: entry.item.id,
+            itemName: entry.item.name
+          });
+        }
       }
       if (Object.prototype.hasOwnProperty.call(payload, "name")) {
         const name = cleanName(payload.name);
@@ -149,7 +186,7 @@ async function handleApi(req, res, url) {
         if (!nextCategory) throw Object.assign(new Error("Category not found"), { status: 404 });
         moveItem(entry, nextCategory);
       }
-      entry.item.updatedAt = new Date().toISOString();
+      entry.item.updatedAt = now;
       return entry.item;
     });
 
@@ -162,16 +199,29 @@ async function handleApi(req, res, url) {
     const item = await withStateMutation(state => {
       const category = findCategory(state, payload.categoryId);
       const name = cleanName(payload.name);
+      const actor = cleanActor(payload.actor);
       if (!category) throw Object.assign(new Error("Category not found"), { status: 404 });
       if (!name) throw Object.assign(new Error("Item name is required"), { status: 400 });
 
+      const now = new Date().toISOString();
       const nextItem = {
         id: makeId("item"),
         name,
         checked: false,
+        addedBy: actor,
+        addedAt: now,
         updatedAt: null
       };
       category.items.push(nextItem);
+      addActivityLog(state, {
+        action: "add-item",
+        actor,
+        at: now,
+        categoryId: category.id,
+        categoryName: category.name,
+        itemId: nextItem.id,
+        itemName: nextItem.name
+      });
       return nextItem;
     });
 
@@ -210,14 +260,25 @@ async function handleApi(req, res, url) {
     const payload = await readBody(req);
     const category = await withStateMutation(state => {
       const name = cleanName(payload.name);
+      const actor = cleanActor(payload.actor);
       if (!name) throw Object.assign(new Error("Category name is required"), { status: 400 });
 
+      const now = new Date().toISOString();
       const nextCategory = {
         id: makeId("category"),
         name,
+        addedBy: actor,
+        addedAt: now,
         items: []
       };
       state.categories.push(nextCategory);
+      addActivityLog(state, {
+        action: "add-category",
+        actor,
+        at: now,
+        categoryId: nextCategory.id,
+        categoryName: nextCategory.name
+      });
       return nextCategory;
     });
 
